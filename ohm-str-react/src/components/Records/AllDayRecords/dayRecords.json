@@ -1,0 +1,26 @@
+[
+	{
+		"date": "4/10/2021",
+		"workout": "Dogsled Grabs",
+		"lbs": "25",
+		"sets": "5",
+		"repsPerSet": "5",
+		"notes": ""
+	},
+	{
+		"date": "4/11/2021",
+		"workout": "Dead Man's Lift",
+		"lbs": "5",
+		"sets": "15",
+		"repsPerSet": "6",
+		"notes": "Left me sore and yearning for the sea"
+	}, 	
+	{
+		"date": "4/11/2021",
+		"workout": "Knee Presses",
+		"lbs": "10",
+		"sets": "5",
+		"repsPerSet": "5",
+		"notes": ""
+	}
+]
