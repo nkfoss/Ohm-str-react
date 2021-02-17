@@ -148,7 +148,7 @@ Why not? Because it's unnecessary and actually has drawbacks.
 For now, just don't declare the types of functional components. We can always change our minds though.
 
 
-#Fin.
+# Fin.
 
 ##### Additional Resources:
 1. React/Typescript cheatsheets (excellent overview w/ links) - 
