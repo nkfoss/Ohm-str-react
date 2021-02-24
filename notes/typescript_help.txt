@@ -1,0 +1,33 @@
+### Setup
+
+The setup will depend on whether you are starting a new project, or adapting an existing project.
+
+#### New projects
+
+```
+npx create-react-app my-app --template typescript
+```
+
+**Note:** *This command might produce an error stating that you need to uninstall your global create-react-app package. After you do this, try the command again. If it still doesn't work, trying reinstalling the global package, and then trying the command again (yeah... I know).* 
+(ref: https://github.com/facebook/create-react-app/issues/10132)
+
+#### Existing Projects
+
+```
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+```
+
+From here, you should rename your files to the .tsx extension.
+
+
+##### Additional Resources:
+1. React/Typescript cheatsheets (excellent overview w/ links) - 
+https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets
+2. React's official TS docs (not too informative, but useful for setup) - 
+https://reactjs.org/docs/static-type-checking.html#typescript
+3. Typescript usage in React (very informative) - 
+https://www.typescriptlang.org/play?jsx=2&esModuleInterop=true&e=181#example/typescript-with-react
+4. Overview and explanation of TS rules/syntax (helpful refresher)- 
+https://2ality.com/2018/04/type-notation-typescript.html#specifying-types-via-type-expressions 
+5. Typescipt generic functions - 
+https://www.typescriptlang.org/play?jsx=2&esModuleInterop=true&e=181#example/generic-functions
