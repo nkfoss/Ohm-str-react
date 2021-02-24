@@ -1,0 +1,47 @@
+Pages:
+
+	AllDayRecords: Not sure how/if to do this yet...
+
+	=======================================================================================
+
+	EditDayRecord: This is essentially the `EditWorkoutComponent` from the old app. 
+
+		--- TEMPLATE ----
+		(?maybe?) The current date displayed at the top, with arrows for next/previous date (?maybe?)
+
+		An input for bodyweight
+		A textarea for notes
+
+		A container of elements corresponding to each exercise in the workout:
+			The name of the exercise and corresponding set-type (myo, mTOR, regular, etc).
+				** The exercise name is clickable, and opens the Edit-Exercise Component
+			A row for each working set (not warmup sets) containing: weight, reps, and percentRecord (if applicable).
+
+		A button to add another exercise
+		A button to save the workout to the server.
+
+	=========================================================================================
+
+	EditExerciseRecord: also used for adding new exercises
+
+		--- TEMPLATE ----
+
+		A button to cancel / go back
+		A button to Delete the current exercise (if not in edit mode)
+
+		Input for exercise name
+		A dropdown menu to select the set-type (myo, mtor, rest-pause-double, etc.)
+		Textarea for Notes
+
+		Dynamic form (warm-up sets):
+			A button to add a warmup-set element. 
+			Each element contains a number, weight (input), reps (input), and button to delete element.
+
+		Dynamic form (working sets):
+			*** This will look different depending on the specific type of set. In general, it will have
+				the set #, weight, and reps
+		
+		A button to submit the form
+
+	===========================================================================================
+
