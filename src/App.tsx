@@ -17,23 +17,11 @@ class App extends Component {
 					<div>
 						<Navbar></Navbar>
 						<Route exact path='/' component={Home} />
-						<Route exact path='/dayrecord' component={DayRecord} />
-						<Route
-							exact
-							path='/alldayrecords'
-							component={AllDayRecords}
-						/>
-						<Route
-							exact
-							path='/editdayrecord'
-							component={EditDayRecord}
-						/>
-						<Route exact path='/profile' component={Profile} />
-						<Route
-							exact
-							path='/createrecord'
-							component={CreateRecord}
-						/>
+						<Route path='/dayrecord' component={DayRecord} />
+						<Route path='/alldayrecords' component={AllDayRecords} />
+						<Route path='/editdayrecord' component={EditDayRecord}/>
+						<Route path='/profile' component={Profile} />
+						<Route path='/createrecord' component={CreateRecord} />
 						{/* <Footer></Footer> */}
 					</div>
 				</BrowserRouter>
