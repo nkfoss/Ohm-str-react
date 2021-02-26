@@ -3,9 +3,9 @@ import RecordDatePicker from '../RecordDatePicker/RecordDatePicker';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import './CreateRecord.scss'
 
-export default class CreateRecord extends Component {
-	render() {
+export default function CreateRecord() {
 		const StyledTextField = styled(TextField)`
 			margin-bottom: 1rem;
 		`;
@@ -18,13 +18,14 @@ export default class CreateRecord extends Component {
 			<div>
 				<h1>CreateRecord</h1>
 				<RecordDatePicker></RecordDatePicker>
-				<form noValidate autoComplete='off'>
+				<form noValidate autoComplete='off' className={'MuiTextField-root'}>
 					{/* TODO: iterate each one with params, akin to how sidebar items are mapped*/}
 					<StyledTextField
 						id='outlined-basic'
 						label='Workout Title'
 						variant='outlined'
-					/>{' '}
+						className="block" />
+					{' '}
 					<StyledTextField
 						id='outlined-basic'
 						label='Lbs'
@@ -47,6 +48,7 @@ export default class CreateRecord extends Component {
 						id='outlined-basic'
 						label='Notes'
 						variant='outlined'
+						className="block"
 					/>
 				</form>
 
@@ -54,4 +56,3 @@ export default class CreateRecord extends Component {
 			</div>
 		);
 	}
-}
