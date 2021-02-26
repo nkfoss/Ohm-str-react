@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import './CreateRecord.scss'
+import MenuItem from '@material-ui/core/MenuItem';
 
 // TODO: Epic #4: "Create the edit/add exercise page": https://github.com/nkfoss/Ohm-str-react/issues/4
 // EditExerciseRecord: also used for adding new exercises
@@ -27,6 +28,21 @@ import './CreateRecord.scss'
 
 	// 	A button to submit the form
 
+const setTypes = [
+	{
+		value: 'myo',
+		label: 'myo',
+	},
+	{
+		value: 'mtor',
+		label: 'mtor',
+	},
+	{
+		value: 'rest-pause-double',
+		label: 'rest-pause-double',
+	},
+];
+
 export default function CreateRecord() {
 		const StyledTextField = styled(TextField)`
 			margin-bottom: 1rem;
@@ -40,7 +56,7 @@ export default function CreateRecord() {
 			<div>
 				<h1>CreateRecord</h1>
 				<RecordDatePicker></RecordDatePicker>
-				<form noValidate autoComplete='off' className={'MuiTextField-root'}>
+				<form noValidate autoComplete='off'>
 					{/* TODO: iterate each one with params, akin to how sidebar items are mapped*/}
 					<StyledTextField
 						id='outlined-basic'
@@ -48,24 +64,41 @@ export default function CreateRecord() {
 						variant='outlined'
 						className="block" />
 					{' '}
-					<StyledTextField
-						id='outlined-basic'
-						label='Lbs'
-						variant='outlined'
-						type='number'
-					/>{' '}
-					<StyledTextField
-						id='outlined-basic'
-						label='Sets'
-						variant='outlined'
-						type='number'
-					/>{' '}
-					<StyledTextField
-						id='outlined-basic'
-						label='Rep per set'
-						variant='outlined'
-						type='number'
-					/>{' '}
+					<div id="set-numbers">
+						<StyledTextField 
+							label='Set Type'
+							select
+							id="outlined-basic"
+							variant='outlined'
+							style={{'width': '200px'}}
+							value="t"
+						>
+							{setTypes.map((option) => (
+								<MenuItem key={option.value} value={option.value}>
+								{option.label}
+								</MenuItem>
+							))}
+						</StyledTextField>{' '}
+						<StyledTextField
+							id='outlined-basic'
+							label='Lbs'
+							variant='outlined'
+							type='number'
+						/>{' '}
+						<StyledTextField
+							id='outlined-basic'
+							label='Sets'
+							variant='outlined'
+							type='number'
+						/>{' '}
+						<StyledTextField
+							id='outlined-basic'
+							label='Rep per set'
+							variant='outlined'
+							type='number'
+						/>{' '}
+					</div>
+
 					<StyledTextField
 						id='outlined-basic'
 						label='Notes'
