@@ -44,70 +44,76 @@ const setTypes = [
 ];
 
 export default function CreateRecord() {
-		const StyledTextField = styled(TextField)`
-			margin-bottom: 1rem;
-		`;
+	const StyledTextField = styled(TextField)`
+		margin-bottom: 1rem;
+	`;
+	const StyledButton = styled(Button)`
+		border: 1px solid black;
+	`;
 
-		const StyledButton = styled(Button)`
-			border: 1px solid black;
-		`;
+	const [workout, setWorkout] = React.useState('');
 
-		return (
-			<div>
-				<h1>CreateRecord</h1>
-				<RecordDatePicker></RecordDatePicker>
-				<form noValidate autoComplete='off'>
-					{/* TODO: iterate each one with params, akin to how sidebar items are mapped*/}
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setWorkout(event.target.value);
+	};
+
+	return (
+		<div>
+			<h1>CreateRecord</h1>
+			<RecordDatePicker></RecordDatePicker>
+			<form noValidate autoComplete='off'>
+				{/* TODO: iterate each one with params, akin to how sidebar items are mapped*/}
+				<StyledTextField
+					id='outlined-basic'
+					label='Workout Title'
+					variant='outlined'
+					className="block" />
+				{' '}
+				<div id="set-numbers">
+					<StyledTextField 
+						label='Set Type'
+						select
+						id="outlined-basic"
+						variant='outlined'
+						style={{'width': '200px'}}
+						value={workout}
+						onChange={handleChange}
+					>
+						{setTypes.map((option) => (
+							<MenuItem key={option.value} value={option.value}>
+							{option.label}
+							</MenuItem>
+						))}
+					</StyledTextField>{' '}
 					<StyledTextField
 						id='outlined-basic'
-						label='Workout Title'
+						label='Lbs'
 						variant='outlined'
-						className="block" />
-					{' '}
-					<div id="set-numbers">
-						<StyledTextField 
-							label='Set Type'
-							select
-							id="outlined-basic"
-							variant='outlined'
-							style={{'width': '200px'}}
-							value="t"
-						>
-							{setTypes.map((option) => (
-								<MenuItem key={option.value} value={option.value}>
-								{option.label}
-								</MenuItem>
-							))}
-						</StyledTextField>{' '}
-						<StyledTextField
-							id='outlined-basic'
-							label='Lbs'
-							variant='outlined'
-							type='number'
-						/>{' '}
-						<StyledTextField
-							id='outlined-basic'
-							label='Sets'
-							variant='outlined'
-							type='number'
-						/>{' '}
-						<StyledTextField
-							id='outlined-basic'
-							label='Rep per set'
-							variant='outlined'
-							type='number'
-						/>{' '}
-					</div>
-
+						type='number'
+					/>{' '}
 					<StyledTextField
 						id='outlined-basic'
-						label='Notes'
+						label='Sets'
 						variant='outlined'
-						className="block"
-					/>
-				</form>
+						type='number'
+					/>{' '}
+					<StyledTextField
+						id='outlined-basic'
+						label='Rep per set'
+						variant='outlined'
+						type='number'
+					/>{' '}
+				</div>
 
-				<StyledButton>Add Record</StyledButton>
-			</div>
-		);
-	}
+				<StyledTextField
+					id='outlined-basic'
+					label='Notes'
+					variant='outlined'
+					className="block"
+				/>
+			</form>
+
+			<StyledButton>Add Record</StyledButton>
+		</div>
+	);
+}
