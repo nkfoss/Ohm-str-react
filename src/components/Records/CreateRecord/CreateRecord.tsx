@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import './CreateRecord.scss'
 import MenuItem from '@material-ui/core/MenuItem';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useHistory } from "react-router-dom";
 
 // TODO: Epic #4: "Create the edit/add exercise page": https://github.com/nkfoss/Ohm-str-react/issues/4
 // EditExerciseRecord: also used for adding new exercises
@@ -57,9 +59,16 @@ export default function CreateRecord() {
 		setWorkout(event.target.value);
 	};
 
+	const history = useHistory();
+
 	return (
 		<div>
-			<h1>CreateRecord</h1>
+			<h1>
+				<ArrowBackIcon onClick={() => {
+                    history.goBack();
+                }} />
+				CreateRecord
+			</h1>
 			<RecordDatePicker></RecordDatePicker>
 			<form noValidate autoComplete='off'>
 				{/* TODO: iterate each one with params, akin to how sidebar items are mapped*/}
