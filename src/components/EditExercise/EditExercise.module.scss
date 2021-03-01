@@ -1,0 +1,38 @@
+.EditExercise {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+	box-sizing: border-box;
+	
+	&:after, &:before {
+		box-sizing: border-box;
+	}
+}
+
+.BackButton {
+	background-color: rgb(109, 109, 109);
+}
+
+.ButtonContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	&:after, &:before {
+		box-sizing: border-box;
+	}
+}
+
+.SetTypeControl {
+	min-width: 150px
+}
+
+.NotesContainer {
+	display: inline-grid;
+}
