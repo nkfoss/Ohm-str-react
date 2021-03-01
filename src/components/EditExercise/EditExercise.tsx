@@ -7,6 +7,8 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import IconButton from '@material-ui/core/IconButton'
 
 
 class EditExercise extends Component {
@@ -147,20 +149,21 @@ class EditExercise extends Component {
 					<Button variant="contained">Back</Button>
 					{DeleteExerciseButton}
 				</div>
+
 				<hr></hr>
 
 				<div> 
-
-					{/* Here's the important part. */}
 					{exerciseNameInput}
+					{/* ^ Here's the important part. */}
 
 					<hr></hr>
 
 					{/* Everything from here down is a rough sketch. Some will probably be in their own components. */}
 					{/* ============================================================================================== */}
-					<FormControl variant="outlined" className={classes.SetTypeControl}>
+					<FormControl variant="outlined">
 						<InputLabel id="set-type-label">Set Type</InputLabel>
 						 <Select
+						 	className={classes.SetTypeControl}
 							labelId="set-type-select-label"
 							id="set-type-select"
 							label="set-type"
@@ -182,6 +185,18 @@ class EditExercise extends Component {
 					/>
 					<Button variant="contained">Old notes</Button>
 				</div>
+				<hr></hr>
+
+				Warm-up Sets
+				<IconButton color="primary">
+					<AddCircleIcon />
+				</IconButton>
+				<hr></hr>
+
+				Working Sets
+				<IconButton color="primary">
+					<AddCircleIcon />
+				</IconButton>
 				<hr></hr>
 
 				<Button disabled={!this.state.exerciseForm.formIsValid} variant="contained" color="primary">Submit</Button>
