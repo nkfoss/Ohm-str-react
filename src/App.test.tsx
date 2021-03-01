@@ -1,9 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { assert } from 'console';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("this is a mock suite", () => {
+
+  it("true is truthy", () => {
+    expect(true).toBeTruthy();
+  })
+
+  it("false is falsy", () => {
+    expect(false).toBeFalsy();
+  })
+
+})
