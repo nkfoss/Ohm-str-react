@@ -13,6 +13,7 @@ class EditExercise extends Component {
 
 	// The state contains data relevant for the input elements, and validation.
 	state = {
+		editMode: true,
 		exerciseForm: {
 			exerciseName: {
 				elementType: 'input',  // ignore this property for now. Might be used for dynamic rendering.
@@ -130,6 +131,12 @@ class EditExercise extends Component {
 			/>
 		)
 
+		// Only show the delete exercise button when editMode = true.
+		let DeleteExerciseButton = null;
+		if (this.state.editMode) {
+			DeleteExerciseButton = <Button variant="contained" color="secondary">Delete</Button>
+		}
+
 		// ===================================================================================
 
 
@@ -138,7 +145,7 @@ class EditExercise extends Component {
 
 				<div className={classes.ButtonContainer}>
 					<Button variant="contained">Back</Button>
-					<Button variant="contained" color="secondary">Delete</Button>
+					{DeleteExerciseButton}
 				</div>
 				<hr></hr>
 
