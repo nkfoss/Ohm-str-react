@@ -1,0 +1,31 @@
+.DateContainer {
+	margin-left: -15px
+}
+
+.ExerciseContainer {
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+.EditWorkout {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto
+}
+@media (min-width: 768px) {
+	.EditWorkout {
+	  width: 750px;
+	}
+  }
+@media (min-width: 992px) {
+	.EditWorkout {
+	  width: 970px;
+	}
+}
+@media (min-width: 1200px) {
+	.EditWorkout {
+	  width: 1170px;
+	}
+}
+

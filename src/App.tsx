@@ -8,6 +8,7 @@ import EditDayRecord from './components/Records/EditDayRecord/EditDayRecord';
 import CreateRecord from './components/Records/CreateRecord/CreateRecord';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
+import EditWorkout from './components/EditWorkout/EditWorkout';
 
 class App extends Component {
 	render() {
@@ -22,6 +23,7 @@ class App extends Component {
 						<Route path='/editdayrecord' component={EditDayRecord}/>
 						<Route path='/profile' component={Profile} />
 						<Route path='/createrecord' component={CreateRecord} />
+						<Route path='/editworkout' component={EditWorkout} />
 						{/* <Footer></Footer> */}
 					</div>
 				</BrowserRouter>
