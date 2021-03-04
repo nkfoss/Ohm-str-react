@@ -8,12 +8,18 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import classes from './EditWorkout.module.scss'
+import exerciseArray from './exercisesObject'
+import { Exercise } from "../../shared/models/Exercise";
+import ExerciseComponent from "./ExerciseComponent/ExerciseComponent";
 
 class EditWorkout extends Component {
 
 	state = {
-		workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
-		bodyweight: null
+		workout: {
+			workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
+			bodyweight: null,
+			exercises: exerciseArray
+		}
 	}
 
 	/**
@@ -23,10 +29,10 @@ class EditWorkout extends Component {
 	changeDateHandler = (event: React.MouseEvent) => {
 		let newDate = new Date()
 		if (event.currentTarget.id === "prevDate") {
-			newDate.setDate(this.state.workoutDate.getDate() - 1)
+			newDate.setDate(this.state.workout.workoutDate.getDate() - 1)
 		}
 		else if (event.currentTarget.id === "nextDate") {
-			newDate.setDate(this.state.workoutDate.getDate() + 1)
+			newDate.setDate(this.state.workout.workoutDate.getDate() + 1)
 		}
 		console.log(newDate);
 		this.setState({workoutDate: newDate});
@@ -37,28 +43,34 @@ class EditWorkout extends Component {
 	}
 	
 	render() {
+
+		// Render a table for each Exercise
+		let exercises = [];
+		exercises = this.state.workout.exercises.map((exercise: Exercise) => {
+			return <ExerciseComponent exercise={exercise} />
+		})
+
+
 		return (
 			<div className={classes.EditWorkout}>
+
 				<div className={classes.DateContainer}>
-					<IconButton id="prevDate" onClick={this.changeDateHandler}>
-						<ArrowBackIcon />
-					</IconButton>
-					{this.state.workoutDate.toDateString()}
-					<IconButton id="nextDate" onClick={this.changeDateHandler}>
-						<ArrowForwardIcon />
-					</IconButton>
+					<IconButton id="prevDate" onClick={this.changeDateHandler}> <ArrowBackIcon /> </IconButton>
+					{this.state.workout.workoutDate.toDateString()}
+					<IconButton id="nextDate" onClick={this.changeDateHandler}> <ArrowForwardIcon /> </IconButton>
 				</div>
+
 				<div className={classes.ExerciseContainer}>
 						<TextField 
 							type="number"
 							id="bodyweight"
 							label="Body weight"
-							value={this.state.bodyweight}
+							value={this.state.workout.bodyweight}
 							onChange={this.inputChangedHandler}
 						/>
 				</div>
 				<div className={classes.ExerciseContainer}>
-					Here is where the exercises would go.
+					{exercises}
 				</div>
 				<div>
 					<Button variant="contained" color="primary">Add Exercise</Button>
