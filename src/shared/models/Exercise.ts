@@ -1,5 +1,6 @@
 import { BasicSet } from "./BasicSet";
 import { DropSet } from "./DropSet";
+import { EffortSet } from "./EffortSet";
 import { RestPauseSet } from "./RestPauseSet";
 
 export interface Exercise {
@@ -7,7 +8,7 @@ export interface Exercise {
 	setType: string,
 	exerciseNotes: string,
 	warmupSets: BasicSet[],
-	workingSets: BasicSet[] | RestPauseSet | DropSet
+	workingSets: BasicSet[] | EffortSet[] | RestPauseSet[] | DropSet[]
 }
 
 // Note: The properties "warmupSets" "sets" could be any type that extends BasicSet[].
