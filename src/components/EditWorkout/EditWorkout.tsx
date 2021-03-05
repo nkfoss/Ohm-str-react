@@ -8,7 +8,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import classes from './EditWorkout.module.scss'
-import exerciseArray from './exercisesObject'
+import exerciseArray from './exercisesArray'
 import { Exercise } from "../../shared/models/Exercise";
 import ExerciseComponent from "./ExerciseComponent/ExerciseComponent";
 

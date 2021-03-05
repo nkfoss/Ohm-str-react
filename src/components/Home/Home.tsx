@@ -11,6 +11,7 @@ export default class Home extends Component {
 					The premier strength training app made by two aspiring web
 					developers that are open to employment.
 				</p>
+				
 				<RecordDatePicker></RecordDatePicker>
 				<CreateRecordButton></CreateRecordButton>
 			</div>
