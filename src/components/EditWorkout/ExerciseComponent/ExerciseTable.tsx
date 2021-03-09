@@ -1,10 +1,13 @@
+import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';   // Styles the table with box-shadow
 import { Exercise } from '../../../shared/models/Exercise';
+import classes from './ExerciseTable.module.scss'
 
 interface iProps {
 	exercise: Exercise
@@ -30,24 +33,25 @@ const exerciseComponent = (props: iProps) => {
 	})
 
 	return (
-		<TableContainer> 
-			<Table >
-				
-				<TableHead>
-					<TableRow>
-						<TableCell>Set #</TableCell>
-						<TableCell>Weight</TableCell>
-						<TableCell>Reps</TableCell>
-						<TableCell>Percent of Record</TableCell>
-					</TableRow>
-				</TableHead>
+		<div className={classes.TableContainer}>
+			<div className={classes.TableTitle}> {props.exercise.exerciseName}, {props.exercise.setType} </div>
+			<TableContainer component={Paper}> 
+				<Table >
+					<TableHead>
+						<TableRow>
+							<TableCell>Set #</TableCell>
+							<TableCell>Weight</TableCell>
+							<TableCell>Reps</TableCell>
+							<TableCell>Percent of Record</TableCell>
+						</TableRow>
+					</TableHead>
 
-				<TableBody>
-					{rows}
-				</TableBody>
-
-			</Table>
-		</TableContainer>
+					<TableBody>
+						{rows}
+					</TableBody>
+				</Table>
+			</TableContainer>
+		</div>
 	)
 }
 
