@@ -1,0 +1,72 @@
+Testing tools:
+
+1. The test-runner
+	- Runs the testing code and provides a library of testing functions.
+	- Can emulate browser environment
+	- Create-react-app comes with preconfigured test runner (Jest).
+
+2. Testing utilities 
+	- Mount components, traverse the DOM, simulate React.
+	- Enzyme is a tool we WOULD use, but it's not supported for React 17. 
+		- Also... it no longer has corporate support from Airbnb (they created the library).
+	- We can instead use React Testing Library
+		- The main advantage is it lets the test-writer take the perspective of the user.
+		- Instead of testing implementation details and state (things the use doesn't care about)...
+		- ...it allows you to easily test the HTML at key points of the render/update cycle (things the users see).
+
+===========================================================================
+
+General guidelines:
+	- We test OUR code, not the code of other libraries.
+	- Don't test complex connections. Be granular/isolated.
+	- Test conditional output (rendering different things dependent on a property).
+
+============================================================================
+
+How to write tests:
+
+The describe() function encompsses the 'test-suite' and takes two args: 
+	1. A string that describes the test bundle
+	2. The testing function ( containing `it` or `test` ).
+
+The function `it` or `test` encompasses the test case. 
+It allows you to write an individual test, and takes two args:
+	1. A string that describes what is being tested
+	2. A testing function for the actual test
+
+============================================================================
+
+Inside the actual test function, there are some useful things:
+
+Selecting elements:
+	1. import { render, screen } from '@testing-library/react
+	2. render( <MyComponent /> ) -- this renders the components
+	3. screen.debug   --- prints a prettified-version of the current DOM 
+	4. screen.getByText('Ohm-str')   --- grabs an element that matches this text content, throws an error if not found. 
+		4a. expect(screen.getByText('Ohm-str')).toBeInTheDocument();  -- practical use
+		4b. expect(screen.getByText(/Ohm-str/)).toBeInTheDocument();  -- Regex use
+
+-------------------------------------------------
+
+Search Types: 
+
+	1. `getBytext` is what I described above.
+	2.  `getByRole` selects elements by accessibility role.
+		2a. If you're not sure of the roles, enter an empty string, and the ouput of the test will give a list of applicable roles.
+
+-------------------------------------------------
+
+Search Variants:
+	1. queryByText, queryByRole, ''LabelText, ''AltText, ''DisplayValue
+	2. findByText, ``Role, etc...
+	
+	** findBy IS NOT GOOD for asserting that elements ARE NOT THERE (b/c it throws error before assertion).
+	** ...instead we should use queryBy for non-existing elements.
+
+	** findBy IS GOOD for asychronous tests where the element will EVENTUALLY BE THERE.
+
+	
+-------------------------------------------------
+
+more info: https://www.robinwieruch.de/react-testing-library
+
