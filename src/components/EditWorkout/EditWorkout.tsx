@@ -15,8 +15,8 @@ import ExerciseTable from "./ExerciseComponent/ExerciseTable";
 class EditWorkout extends Component {
 
 	state = {
+		workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
 		workout: {
-			workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
 			bodyweight: null,
 			exercises: exerciseArray
 		}
@@ -29,12 +29,11 @@ class EditWorkout extends Component {
 	changeDateHandler = (event: React.MouseEvent) => {
 		let newDate = new Date()
 		if (event.currentTarget.id === "prevDate") {
-			newDate.setDate(this.state.workout.workoutDate.getDate() - 1)
+			newDate.setDate(this.state.workoutDate.getDate() - 1)
 		}
 		else if (event.currentTarget.id === "nextDate") {
-			newDate.setDate(this.state.workout.workoutDate.getDate() + 1)
+			newDate.setDate(this.state.workoutDate.getDate() + 1)
 		}
-		console.log(newDate);
 		this.setState({workoutDate: newDate});
 	}
 
@@ -44,40 +43,45 @@ class EditWorkout extends Component {
 	
 	render() {
 
-		// Render a table for each Exercise
+		// Render a table for each Exercise.
 		let exercises = [];
-		exercises = this.state.workout.exercises.map((exercise: Exercise) => {
-			return <ExerciseComponent exercise={exercise} />
+		exercises = this.state.workout.exercises.map((exercise: Exercise, index) => {
+			return <ExerciseTable exercise={exercise} key={index} />
 		})
 
 
 		return (
 			<div className={classes.EditWorkout}>
 
+				{/* Date navigator */}
 				<div className={classes.DateContainer}>
 					<IconButton id="prevDate" onClick={this.changeDateHandler}> <ArrowBackIcon /> </IconButton>
-					{this.state.workout.workoutDate.toDateString()}
+					{this.state.workoutDate.toDateString()}
 					<IconButton id="nextDate" onClick={this.changeDateHandler}> <ArrowForwardIcon /> </IconButton>
 				</div>
 
-				<div className={classes.ExerciseContainer}>
+				{/* Bodyweight input */}
+				<div className={classes.ExerciseContainer}> 
 						<TextField 
 							type="number"
 							id="bodyweight"
-							label="Body weight"
+							label="Bodyweight"
 							value={this.state.workout.bodyweight}
 							onChange={this.inputChangedHandler}
 						/>
 				</div>
+
+				{/* Collection of Exercise table components */}
 				<div className={classes.ExerciseContainer}>
 					{exercises}
 				</div>
+
+				{/* Add exercise / daveworkout */}
 				<div>
 					<Button variant="contained" color="primary">Add Exercise</Button>
 					|
 					<Button variant="contained" color="primary">Save Workout</Button>
 				</div>
-				
 			</div>
 		)
 	}
