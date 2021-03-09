@@ -8,18 +8,24 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import classes from './EditWorkout.module.scss'
-import exerciseArray from './exercisesArray'
 import { Exercise } from "../../shared/models/Exercise";
 import ExerciseTable from "./ExerciseComponent/ExerciseTable";
+import Spinner from '../UI/Spinner'
 
-class EditWorkout extends Component {
+import { connect } from 'react-redux'
+import * as actions from '../../store/actions/index'
+
+class EditWorkout extends Component<any, any> {
 
 	state = {
 		workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
-		workout: {
-			bodyweight: null,
-			exercises: exerciseArray
-		}
+		bodyweight: this.props.workout.bodyweight
+	}
+
+	// Get the workout (or attempt to). After response receved, no more loading spinner.
+	componentDidMount() {
+		console.log("[COMPONENT DID MOUNT]")
+		this.props.onFetchWorkout()
 	}
 
 	/**
@@ -43,12 +49,13 @@ class EditWorkout extends Component {
 	
 	render() {
 
-		// Render a table for each Exercise.
-		let exercises = [];
-		exercises = this.state.workout.exercises.map((exercise: Exercise, index) => {
-			return <ExerciseTable exercise={exercise} key={index} />
-		})
-
+		// Render a table for each Exercise, but display spinner before loaded.
+		let exercises = <Spinner />
+		if (!this.props.loading) {
+			exercises = this.props.workout.exercises.map((exercise: Exercise, index) => {
+				return <ExerciseTable exercise={exercise} key={index} />
+			})
+		}
 
 		return (
 			<div className={classes.EditWorkout}>
@@ -66,7 +73,7 @@ class EditWorkout extends Component {
 							type="number"
 							id="bodyweight"
 							label="Bodyweight"
-							value={this.state.workout.bodyweight}
+							value={this.state.bodyweight}
 							onChange={this.inputChangedHandler}
 						/>
 				</div>
@@ -88,4 +95,20 @@ class EditWorkout extends Component {
  
 }
 
-export default EditWorkout;
+//=============================================================
+
+const mapStateToProps = (state: any) => {
+	return {
+		workout: state.workout,
+		loading: state.loading,
+		error: state.error
+	}
+}
+
+const mapDispatchToProps = (dispatch: Function) => {
+	return {
+		onFetchWorkout: () => dispatch( actions.fetchWorkout() )
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditWorkout);
