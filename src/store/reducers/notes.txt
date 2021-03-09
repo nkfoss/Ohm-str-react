@@ -1,0 +1,13 @@
+This is the folder where the action-reducers live.
+
+Each action-reducer has a corresponding action-creator/action-type in the '../actions' folder.
+
+Action-reducers have a couple key things:
+	1) An initial state
+	2) A reducer function that receives the current state, and action type (string).
+	... It is usually composed of a big switch-statement where
+	... each case corresponds to an action created in the action-creator file.
+	... The case returns a new object representing the updated state.
+
+The actiontypes are constants that are imported from the '../actions/actionTypes.js'
+	

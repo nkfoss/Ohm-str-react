@@ -1,0 +1,15 @@
+This is the folder where the action-creators live.
+
+Each action-creator file has a name that describes what part of the state it works with, or which component.
+... EXAMPLE: 'order.js'  or  'burgerBuilder.js'
+
+Inside the files, there are exported functions that eventually trigger an action reducer.
+The functions either do this directly or indirectly.
+
+This is also where asynchronous code is called, which will indirectly trigger an action reducer.
+
+There are also some accessory files that make things easier:
+	1) actionTypes.js: A mapping of the action-type string representations to variables.
+	... This is so if we have a typo, the editor will notice it (whereas with a string, it won't)
+	2) index.js: an import/export file for individual actions created in the action-creator files.
+	... This is used by the components themselves.
