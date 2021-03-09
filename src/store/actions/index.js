@@ -1,0 +1,1 @@
+export { fetchWorkout } from './workout'
