@@ -24,17 +24,16 @@ class EditWorkout extends Component<any, any> {
 
 	// Get the workout (or attempt to). After response receved, no more loading spinner.
 	componentDidMount() {
-		console.log("[COMPONENT DID MOUNT]")
 		this.props.onFetchWorkout()
 	}
 	
+	// Once workout is fetched, update the bodyweight input.
 	componentDidUpdate(prevProps) {
 		if (this.props.workout.bodyweight !== prevProps.workout.bodyweight) {
 			this.setState({bodyweight: this.props.workout.bodyweight})
 		}
 	}
 
-	
 
 	/**
 	 * The function that increments the current date. 
@@ -91,7 +90,7 @@ class EditWorkout extends Component<any, any> {
 					{exercises}
 				</div>
 
-				{/* Add exercise / daveworkout */}
+				{/* Add exercise / saveworkout */}
 				<div>
 					<Button variant="contained" color="primary">Add Exercise</Button>
 					|
