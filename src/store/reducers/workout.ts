@@ -7,7 +7,7 @@ interface iState {
 
 const initialState: iState = {
 	workout: {
-		bodyweight: 1,
+		bodyweight: 0,
 		exercises: [],
 		notes: ''
 	}

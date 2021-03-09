@@ -27,6 +27,14 @@ class EditWorkout extends Component<any, any> {
 		console.log("[COMPONENT DID MOUNT]")
 		this.props.onFetchWorkout()
 	}
+	
+	componentDidUpdate(prevProps) {
+		if (this.props.workout.bodyweight !== prevProps.workout.bodyweight) {
+			this.setState({bodyweight: this.props.workout.bodyweight})
+		}
+	}
+
+	
 
 	/**
 	 * The function that increments the current date. 
