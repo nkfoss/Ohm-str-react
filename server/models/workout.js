@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const basicSetSchema = require('./basicSet');
 
 const workoutSchema = mongoose.Schema(
 	{
@@ -11,7 +12,7 @@ const workoutSchema = mongoose.Schema(
 				setType: String,
 				exerciseNotes: String,
 				warmupSets: {
-					type: [{ weight: Number, reps: Number }],
+					type: [basicSetSchema],
 					required: false
 				},	
 				workingSets: [{
@@ -24,21 +25,15 @@ const workoutSchema = mongoose.Schema(
 					},
 
 					restPauseSets: {
-						type: [{
-							weight: Number,
-							reps: Number
-						}],
+						type: [basicSetSchema],
 						required: false
 					},
 
 					dropSets: {
-						type: [{
-							weight: Number,
-							reps: Number
-						}],
+						type: [basicSetSchema],
 						required: false
 					},
-					
+
 				}]
 			},
 			required: false
