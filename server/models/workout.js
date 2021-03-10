@@ -1,16 +1,50 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const workoutSchema = mongoose.Schema(
 	{
-		bodyweight: {
-			type: Number
-		},
+		bodyweight: Number,
+
 		exercises: {
-			type: mongoose.Schema.Types.Mixed,
+
+			type: {
+				exerciseName: String,
+				setType: String,
+				exerciseNotes: String,
+				warmupSets: {
+					type: [{ weight: Number, reps: Number }],
+					required: false
+				},	
+				workingSets: [{
+					weight: Number, 
+					reps: Number,
+
+					percentEffort: {
+						type: Number,
+						required: false
+					},
+
+					restPauseSets: {
+						type: [{
+							weight: Number,
+							reps: Number
+						}],
+						required: false
+					},
+
+					dropSets: {
+						type: [{
+							weight: Number,
+							reps: Number
+						}],
+						required: false
+					},
+					
+				}]
+			},
+			required: false
 		},
-		notes: {
-			type: String
-		}
+		notes: String
+		
 	}
 )
 
