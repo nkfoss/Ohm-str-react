@@ -29,16 +29,17 @@ app.use((req, res, next) => {
 
 
 app.get("/api/workout", (req, res, next) => {
-	Workout.find()
+	Workout.findOne()
 		.then( documents => {
+      console.log(documents)
 			res.send({
 				message: "workout fetched",
 				workout: documents
 			})
-		.catch(error => {
-			console.log(error)
-		})
 	})
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 module.exports = app;
