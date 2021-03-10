@@ -24,8 +24,11 @@ class EditWorkout extends Component<any, any> {
 
 	// Get the workout (or attempt to). After response receved, no more loading spinner.
 	componentDidMount() {
-		this.props.onFetchWorkout()
+		this.props.onFetchWorkout( 
+			this.state.workoutDate.toISOString().slice(0, 10)  // returns a string formatted: YYYY-MM-DD
+		);
 	}
+
 	
 	// Once workout is fetched, update the bodyweight input.
 	componentDidUpdate(prevProps) {
@@ -33,7 +36,6 @@ class EditWorkout extends Component<any, any> {
 			this.setState({bodyweight: this.props.workout.bodyweight})
 		}
 	}
-
 
 	/**
 	 * The function that increments the current date. 
@@ -114,7 +116,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
-		onFetchWorkout: () => dispatch( actions.fetchWorkout() )
+		onFetchWorkout: (date) => dispatch( actions.fetchWorkout( date ) )
 	}
 }
 

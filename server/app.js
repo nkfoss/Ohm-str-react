@@ -28,8 +28,11 @@ app.use((req, res, next) => {
 });
 
 
-app.get("/api/workout", (req, res, next) => {
-	Workout.findOne()
+app.get("/api/workout/:dateString", (req, res, next) => {
+  console.log(req.params.dateString)
+	Workout.findOne({
+    date: req.params.dateString
+  })
 		.then( documents => {
       console.log(documents)
 			res.send({

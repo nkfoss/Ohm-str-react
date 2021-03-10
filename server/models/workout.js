@@ -3,6 +3,8 @@ const basicSetSchema = require('./basicSet');
 
 const workoutSchema = mongoose.Schema(
 	{
+		date: String,
+		
 		bodyweight: Number,
 
 		exercises: {
@@ -38,6 +40,7 @@ const workoutSchema = mongoose.Schema(
 			},
 			required: false
 		},
+		
 		notes: String
 		
 	}

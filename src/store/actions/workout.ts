@@ -23,10 +23,10 @@ export const fetchWorkoutStart = () => {
 	}
 }
 
-export const fetchWorkout = () => {
+export const fetchWorkout = (date: string) => {
 	return dispatch => {
 		dispatch( fetchWorkoutStart() );
-		axios.get('/api/workout')
+		axios.get(`/api/workout/${date}`)
 			.then( (response: any) => {
 				dispatch( fetchWorkoutSuccess(response.data.workout) )
 			})

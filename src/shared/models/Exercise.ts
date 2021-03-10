@@ -4,6 +4,7 @@ import { EffortSet } from "./EffortSet";
 import { RestPauseSet } from "./RestPauseSet";
 
 export interface Exercise {
+	date: string,  // date.toDateString()
 	exerciseName: string,
 	setType: string,
 	exerciseNotes: string,
