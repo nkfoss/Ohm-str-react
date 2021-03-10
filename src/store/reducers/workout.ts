@@ -24,6 +24,9 @@ const reducer = (state = initialState, action) => {
 			}
 
 		case actionTypes.FETCH_WORKOUT_SUCCESS:
+			if (!action.workout) {
+				return {...initialState}   // If there's no workout for current date, return an empty one.
+			}
 			return {
 				...state,
 				loading: false,

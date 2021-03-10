@@ -31,9 +31,14 @@ class EditWorkout extends Component<any, any> {
 
 	
 	// Once workout is fetched, update the bodyweight input.
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps, prevState) {
 		if (this.props.workout.bodyweight !== prevProps.workout.bodyweight) {
 			this.setState({bodyweight: this.props.workout.bodyweight})
+		}
+		if (this.state.workoutDate !== prevState.workoutDate) {
+			this.props.onFetchWorkout( 
+				this.state.workoutDate.toISOString().slice(0, 10) 
+			);
 		}
 	}
 
