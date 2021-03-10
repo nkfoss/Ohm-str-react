@@ -1,6 +1,6 @@
 import * as actionTypes from './actionsTypes'
-import exercisesArray from '../../components/EditWorkout/exercisesArray'
 import { iWorkout } from '../../shared/models/Workout'
+import axios from '../../axios/axios-general'
 
 
 export const fetchWorkoutSuccess = (workout: iWorkout) => {
@@ -26,15 +26,12 @@ export const fetchWorkoutStart = () => {
 export const fetchWorkout = () => {
 	return dispatch => {
 		dispatch( fetchWorkoutStart() );
-
-		let workout: iWorkout = {
-			bodyweight: 170,
-			exercises: exercisesArray,
-			notes: "Great workout. 10/10"
-		}
-
-		setTimeout(() => {	
-			dispatch( fetchWorkoutSuccess(workout) )
-		}, 3000)
+		axios.get('/api/workout')
+			.then( (response: any) => {
+				dispatch( fetchWorkoutSuccess(response.data.workout) )
+			})
+			.catch( error => {
+				dispatch( fetchWorkoutFail(error) )
+			})
 	}
 }
