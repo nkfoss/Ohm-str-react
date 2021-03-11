@@ -70,14 +70,19 @@ class EditWorkout extends Component<any, any> {
 				return <ExerciseTable exercise={exercise} key={index} />
 			})
 		}
+		let savingMessage = null;
+		if (this.props.saving) {
+			savingMessage = <span style={{fontSize: "12px", marginLeft: "10px"}}> Saving... </span>
+		}
 
+		//===============================================================================
 		return (
 			<div className={classes.EditWorkout}>
 
 				{/* Date navigator */}
 				<div className={classes.DateContainer}>
 					<IconButton id="prevDate" onClick={this.changeDateHandler}> <ArrowBackIcon /> </IconButton>
-					{this.state.workoutDate.toDateString()}
+					{ this.state.workoutDate.toDateString() }
 					<IconButton id="nextDate" onClick={this.changeDateHandler}> <ArrowForwardIcon /> </IconButton>
 				</div>
 
@@ -101,7 +106,14 @@ class EditWorkout extends Component<any, any> {
 				<div>
 					<Button variant="contained" color="primary">Add Exercise</Button>
 					|
-					<Button variant="contained" color="primary">Save Workout</Button>
+					<Button 
+						onClick={() => this.props.onSaveWorkout( this.props.workout )} 
+						disabled={this.props.error || this.props.loading || this.props.saving} variant="contained" color="primary"
+					>
+						Save workout
+					</Button>
+					{savingMessage}
+			
 				</div>
 			</div>
 		)
@@ -116,12 +128,14 @@ const mapStateToProps = (state: any) => {
 		workout: state.workout,
 		loading: state.loading,
 		error: state.error
+		saving: state.saving
 	}
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onFetchWorkout: (date) => dispatch( actions.fetchWorkout( date ) )
+		onSaveWorkout: (workout: iWorkout) => dispatch( actions.saveWorkout( workout ) )
 	}
 }
 
