@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';   // Styles the table with box-shadow
 import { Exercise } from '../../../shared/models/Exercise';
 import classes from './ExerciseTable.module.scss'
+import { Link } from 'react-router-dom';
 
 interface iProps {
 	exercise: Exercise
@@ -34,7 +35,7 @@ const exerciseComponent = (props: iProps) => {
 
 	return (
 		<div className={classes.TableContainer}>
-			<div className={classes.TableTitle}> {props.exercise.exerciseName}, {props.exercise.setType} </div>
+			<div className={classes.TableTitle}> <Link to="/temporary"> {props.exercise.exerciseName}</Link> , {props.exercise.setType} </div>
 			<TableContainer component={Paper}> 
 				<Table >
 					<TableHead>
