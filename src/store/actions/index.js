@@ -1,1 +1,1 @@
-export { fetchWorkout } from './workout'
+export { fetchWorkout, saveWorkout } from './workout'
