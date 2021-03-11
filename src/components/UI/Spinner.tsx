@@ -1,8 +1,8 @@
 import './Spinner.scss'
 
-const spinner = () => {
+const spinner = (props: any) => {
 	return(
-		<div className="Loader">Loading...</div>
+		<div className="Loader" {...props}>Loading...</div>
 	)
 }
 
