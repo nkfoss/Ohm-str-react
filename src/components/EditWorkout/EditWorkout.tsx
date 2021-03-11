@@ -14,6 +14,7 @@ import Spinner from '../UI/Spinner'
 
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
+import { iWorkout } from "../../shared/models/Workout";
 
 class EditWorkout extends Component<any, any> {
 
@@ -60,16 +61,24 @@ class EditWorkout extends Component<any, any> {
 	inputChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({bodyweight: event.currentTarget.value})
 	}
+
+	//==========================================================================================================
 	
 	render() {
 
 		// Render a table for each Exercise, but display spinner before loaded.
 		let exercises = <Spinner />
 		if (!this.props.loading) {
-			exercises = this.props.workout.exercises.map((exercise: Exercise, index) => {
-				return <ExerciseTable exercise={exercise} key={index} />
-			})
+			if (this.props.error) {
+				exercises = <p> There was an error. Reload or check your connection. </p>   // If we receive an error, display it.
+			}
+			else {
+				exercises = this.props.workout.exercises.map((exercise: Exercise, index) => {
+					return <ExerciseTable exercise={exercise} key={index} />
+				})
+			}
 		}
+
 		let savingMessage = null;
 		if (this.props.saving) {
 			savingMessage = <span style={{fontSize: "12px", marginLeft: "10px"}}> Saving... </span>
@@ -104,7 +113,7 @@ class EditWorkout extends Component<any, any> {
 
 				{/* Add exercise / saveworkout */}
 				<div>
-					<Button variant="contained" color="primary">Add Exercise</Button>
+					<Button disabled={this.props.error || this.props.loading} variant="contained" color="primary">Add Exercise</Button>
 					|
 					<Button 
 						onClick={() => this.props.onSaveWorkout( this.props.workout )} 
@@ -127,14 +136,14 @@ const mapStateToProps = (state: any) => {
 	return {
 		workout: state.workout,
 		loading: state.loading,
-		error: state.error
+		error: state.error,
 		saving: state.saving
 	}
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
-		onFetchWorkout: (date) => dispatch( actions.fetchWorkout( date ) )
+		onFetchWorkout: (date: string) => dispatch( actions.fetchWorkout( date ) ),
 		onSaveWorkout: (workout: iWorkout) => dispatch( actions.saveWorkout( workout ) )
 	}
 }
