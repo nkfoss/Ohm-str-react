@@ -7,6 +7,7 @@ interface iState {
 
 const initialState: iState = {
 	workout: {
+		date: null,
 		bodyweight: 0,
 		exercises: [],
 		notes: ''
@@ -25,7 +26,13 @@ const reducer = (state = initialState, action) => {
 
 		case actionTypes.FETCH_WORKOUT_SUCCESS:
 			if (!action.workout) {
-				return {...initialState}   // If there's no workout for current date, return an empty one.
+				return {
+					...initialState,
+					workout: {
+						...initialState.workout,
+						date: action.date
+					}
+				}   // If there's no workout for given date, return an empty one with date.
 			}
 			return {
 				...state,
@@ -37,6 +44,26 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: false,
+				error: action.error
+			}
+
+		case actionTypes.SAVE_WORKOUT_START:
+			return {
+				...state,
+				saving: true
+			}
+		
+		case actionTypes.SAVE_WORKOUT_SUCCESS:
+			return {
+				...state,
+				saving: false,
+				response: action.response
+			}
+
+		case actionTypes.SAVE_WORKOUT_FAIL:
+			return {
+				...state,
+				saving: false,
 				error: action.error
 			}
 
