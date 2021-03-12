@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import classes from './EditWorkout.module.scss'
 import { Exercise } from "../../shared/models/Exercise";
 import ExerciseTable from "./ExerciseComponent/ExerciseTable";
-import Spinner from '../UI/Spinner'
+import Spinner from '../UI/Spinner/Spinner'
 
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
@@ -153,7 +153,7 @@ class EditWorkout extends Component<any, any> {
 					open={this.state.snackbarOpen} 
 					autoHideDuration={3000} 
 					onClose={this.toggleSnackBar}
-					message="testing"
+					message={this.props.message ? this.props.message.data.message : null}
 					action={
 						<React.Fragment>
 						  <IconButton size="small" aria-label="close" color="inherit" onClick={this.toggleSnackBar}>
@@ -176,7 +176,8 @@ const mapStateToProps = (state: any) => {
 		workout: state.workout,
 		loading: state.loading,
 		error: state.error,
-		saving: state.saving
+		saving: state.saving,
+		message: state.message
 	}
 }
 
