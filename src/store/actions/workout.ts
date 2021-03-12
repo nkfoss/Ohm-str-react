@@ -6,12 +6,8 @@ export const fetchWorkout = (date: string) => {
 	return dispatch => {
 		dispatch( fetchWorkoutStart() );
 		axios.get(`/api/workout/${date}`)
-			.then( (response: any) => {
-				dispatch( fetchWorkoutSuccess(response.data.workout, date) )
-			})
-			.catch( error => {
-				dispatch( fetchWorkoutFail(error) )
-			})
+			.then( (response: any) => dispatch( fetchWorkoutSuccess(response.data.workout, date) ) )
+			.catch( error => dispatch( fetchWorkoutFail(error) ) )
 	}
 }
 export const fetchWorkoutStart = () => {
@@ -37,15 +33,9 @@ export const saveWorkout = (workout: iWorkout) => {
 	return dispatch => {
 		dispatch( saveWorkoutStart() );
 		axios.put(`/api/workout/save`, workout)
-			.then( (response: any) => {
-				console.log("Success sacing")
-				dispatch( saveWorkoutSuccess(response) )
-			})
-			.catch( error => {
-				console.log("erros")
-				dispatch( saveWorkoutFail(error) )
-			})
-	}
+			.then( (response: any) => dispatch( saveWorkoutSuccess(response) ) )
+			.catch( error => dispatch( saveWorkoutFail(error) ) )
+	} 
 }
 export const saveWorkoutStart = () => {
 	return {
