@@ -38,16 +38,14 @@ app.put("/api/workout/save", (req, res, next) => {
     }},
     { upsert: true }  // If no matching document found, then create one.
   )
-    .then( acknowledge => res.send({ message: "Workout saved successfully.", acknowledge: acknowledge }) )
+    .then( acknowledge => res.({ message: "Workout saved successfully.", acknowledge: acknowledge }) )
     .catch( error => res.send({ data: error }) )
 })
 
 app.get("/api/workout/:dateString", (req, res, next) => {
-  console.log(req.params.dateString)
 	Workout.findOne({ date: req.params.dateString })
-		.then( documents => res.send({ message: "workout fetched", workout: documents }) )
-    .catch( error => res.send(error) )
-     
+		.then( documents =>  res.send({ message: "workout fetched", workout: documents }) )
+    .catch( error =>  res.send(error) )
 })
 
 

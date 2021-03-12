@@ -59,14 +59,14 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				saving: false,
-				response: action.response
+				message: action.response
 			}
 
 		case actionTypes.SAVE_WORKOUT_FAIL:
 			return {
 				...state,
 				saving: false,
-				error: action.error
+				message: action.error
 			}
 
 		default:
