@@ -3,17 +3,12 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Workout = require("./models/workout");
 
-
 const app = express();
 
 mongoose
   .connect("mongodb://localhost:27017/ohmstr") // Whichever port mongo is listening on.
-  .then(() => {
-    console.log("Connected to Mongo!");
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  .then( () =>  console.log("Connected to Mongo!") )
+  .catch( error => console.log(error) );
 
 app.use(bodyParser.json());
 
@@ -49,19 +44,12 @@ app.put("/api/workout/save", (req, res, next) => {
 
 app.get("/api/workout/:dateString", (req, res, next) => {
   console.log(req.params.dateString)
-	Workout.findOne({
-    date: req.params.dateString
-  })
-		.then( documents => {
-      console.log(documents)
-			res.send({
-				message: "workout fetched",
-				workout: documents
-			})
-	})
-    .catch(error => {
-      console.log(error)
-    })
+	Workout.findOne({ date: req.params.dateString })
+		.then( documents => res.send({ message: "workout fetched", workout: documents }) )
+    .catch( error => res.send(error) )
+     
 })
+
+
 
 module.exports = app;
