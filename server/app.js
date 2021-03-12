@@ -27,6 +27,21 @@ app.use((req, res, next) => {
   next();
 });
 
+//===============================================================================
+
+app.put("/api/workout/save", (req, res, next) => {
+  Workout.updateOne(
+    { date: req.body.date }, // A query to match a document on.
+    { $set: {
+      bodyweight: req.body.bodyweight,   // The fields to update (excluding _id and date)
+      exercises: req.body.exercises,
+      notes: req.body.notes
+    }},
+    { upsert: true }  // If no matching document found, then create one.
+  )
+    .then( acknowledge => res.send({ message: "Workout saved successfully.", acknowledge: acknowledge }) )
+    .catch( error => res.send({ data: error }) )
+})
 
 app.get("/api/workout/:dateString", (req, res, next) => {
   console.log(req.params.dateString)
