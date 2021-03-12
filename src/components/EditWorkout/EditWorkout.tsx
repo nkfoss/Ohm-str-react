@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 
-
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField'
 import Snackbar from '@material-ui/core/Snackbar';
-
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CloseIcon from '@material-ui/icons/Close';
@@ -46,6 +44,7 @@ class EditWorkout extends Component<any, any> {
 				arr[i] = "0".concat(arr[i])  // Put leading 0's in front of single-digit months and dates
 			}
 		}
+		arr = [ arr[0], arr[2], arr[1] ] // format as yyyy-mm-dd
 		return arr.join('-')
 	}
 
