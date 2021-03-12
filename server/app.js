@@ -24,6 +24,10 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   ); // More CORS stuff.
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET"
+  )
   next();
 });
 
