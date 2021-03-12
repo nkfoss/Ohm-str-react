@@ -1,11 +1,14 @@
-import { Component } from "react";
+import React, { Component } from "react";
+
 
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField'
+import Snackbar from '@material-ui/core/Snackbar';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import CloseIcon from '@material-ui/icons/Close';
 
 import classes from './EditWorkout.module.scss'
 import { Exercise } from "../../shared/models/Exercise";
@@ -20,13 +23,14 @@ class EditWorkout extends Component<any, any> {
 
 	state = {
 		workoutDate: new Date(), // This will eventually be something fetched from the route or query params.
-		bodyweight: this.props.workout.bodyweight
+		bodyweight: this.props.workout.bodyweight,
+		snackbarOpen: false
 	}
 
 	// Get the workout (or attempt to). After response receved, no more loading spinner.
 	componentDidMount() {
 		this.props.onFetchWorkout( 
-			this.state.workoutDate.toISOString().slice(0, 10)  // returns a string formatted: YYYY-MM-DD
+			this.formatDate( this.state.workoutDate )  
 		);
 	}
 
@@ -53,8 +57,11 @@ class EditWorkout extends Component<any, any> {
 		}
 		if (this.state.workoutDate !== prevState.workoutDate) {
 			this.props.onFetchWorkout( 
-				this.state.workoutDate.toISOString().slice(0, 10) 
+				this.formatDate( this.state.workoutDate ) 
 			);
+		}
+		if (this.props.saving !== prevProps.saving) {
+			this.setState({ snackbarOpen: true})
 		}
 	}
 
@@ -76,6 +83,9 @@ class EditWorkout extends Component<any, any> {
 	inputChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({bodyweight: event.currentTarget.value})
 	}
+
+	toggleSnackBar = () => this.setState({ snackbarOpen: false })
+	
 
 	//==========================================================================================================
 	
@@ -139,6 +149,21 @@ class EditWorkout extends Component<any, any> {
 					{savingMessage}
 			
 				</div>
+
+				<Snackbar 
+					open={this.state.snackbarOpen} 
+					autoHideDuration={3000} 
+					onClose={this.toggleSnackBar}
+					message="testing"
+					action={
+						<React.Fragment>
+						  <IconButton size="small" aria-label="close" color="inherit" onClick={this.toggleSnackBar}>
+							<CloseIcon fontSize="small" />
+						  </IconButton>
+						</React.Fragment>
+					}
+				/>	
+
 			</div>
 		)
 	}
@@ -159,7 +184,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onFetchWorkout: (date: string) => dispatch( actions.fetchWorkout( date ) ),
-		onSaveWorkout: (workout: iWorkout) => dispatch( actions.saveWorkout( workout ) )
+		onSaveWorkout: (workout: iWorkout) => dispatch( actions.saveWorkout( workout ) ),
 	}
 }
 
