@@ -45,12 +45,13 @@ export const saveWorkoutStart = () => {
 export const saveWorkoutSuccess = (response) => {
 	return {
 		type: actionTypes.SAVE_WORKOUT_SUCCESS,
-		response: response
+		response: response.data.message
 	}
 }
-export const saveWorkoutFail = (error) => {
+export const saveWorkoutFail = (error: Error) => {
+	console.log(error.message)
 	return {
-		type: actionTypes.SAVE_WORKOUT_SUCCESS,
-		error: error
+		type: actionTypes.SAVE_WORKOUT_FAIL,
+		error: error.message
 	}
 }

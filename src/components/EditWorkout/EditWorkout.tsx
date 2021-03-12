@@ -153,7 +153,7 @@ class EditWorkout extends Component<any, any> {
 					open={this.state.snackbarOpen} 
 					autoHideDuration={3000} 
 					onClose={this.toggleSnackBar}
-					message={this.props.message ? this.props.message.data.message : null}
+					message={this.props.message ? this.props.message : null}
 					action={
 						<React.Fragment>
 						  <IconButton size="small" aria-label="close" color="inherit" onClick={this.toggleSnackBar}>
