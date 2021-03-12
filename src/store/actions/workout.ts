@@ -2,6 +2,13 @@ import * as actionTypes from './actionsTypes'
 import { iWorkout } from '../../shared/models/Workout'
 import axios from '../../axios/axios-general'
 
+export const bodyweightChanged = (bodyweight: number ) => {
+	return {
+		type: actionTypes.BODYWEIGHT_CHANGED,
+		bodyweight: bodyweight
+	}
+}
+
 export const fetchWorkout = (date: string) => {
 	return dispatch => {
 		dispatch( fetchWorkoutStart() );

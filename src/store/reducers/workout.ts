@@ -20,6 +20,15 @@ const reducer = (state = initialState, action) => {
 
 	switch (action.type) {
 
+		case actionTypes.BODYWEIGHT_CHANGED:
+			return {
+				...state,
+				workout: {
+					...state.workout,
+					bodyweight: action.bodyweight
+				}
+			}
+
 		case actionTypes.FETCH_WORKOUT_START:
 			return {
 				...state,

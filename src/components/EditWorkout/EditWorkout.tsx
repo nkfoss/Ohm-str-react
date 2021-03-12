@@ -125,8 +125,9 @@ class EditWorkout extends Component<any, any> {
 							type="number"
 							id="bodyweight"
 							label="Bodyweight"
-							value={this.state.bodyweight}
-							onChange={this.inputChangedHandler}
+							value={this.props.workout.bodyweight.toString()}
+							onChange={this.props.onBodyweightChanged}
+							InputLabelProps = {{ shrink: true}}
 						/>
 				</div>
 
@@ -185,6 +186,7 @@ const mapDispatchToProps = (dispatch: Function) => {
 	return {
 		onFetchWorkout: (date: string) => dispatch( actions.fetchWorkout( date ) ),
 		onSaveWorkout: (workout: iWorkout) => dispatch( actions.saveWorkout( workout ) ),
+		onBodyweightChanged: (event: React.ChangeEvent<HTMLInputElement>) => dispatch( actions.bodyweightChanged( +event.currentTarget.value ))
 	}
 }
 
