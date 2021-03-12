@@ -2,7 +2,8 @@ import { iWorkout } from '../../shared/models/Workout'
 import * as actionTypes from '../actions/actionsTypes'
 
 interface iState {
-	workout: iWorkout
+	workout: iWorkout,
+	saving: boolean
 };
 
 const initialState: iState = {
@@ -11,7 +12,8 @@ const initialState: iState = {
 		bodyweight: 0,
 		exercises: [],
 		notes: ''
-	}
+	},
+	saving: false
 };
 
 const reducer = (state = initialState, action) => {
