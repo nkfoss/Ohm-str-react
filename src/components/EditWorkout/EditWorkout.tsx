@@ -30,6 +30,21 @@ class EditWorkout extends Component<any, any> {
 		);
 	}
 
+	/**
+	 * For use to format the datestring to be used as a route param and property of the database entry
+	 * @param date The workout date object
+	 * @returns A string formatted: YYYY-MM-DD
+	 */
+	formatDate(date: Date): string {
+		let arr = date.toLocaleDateString().split('/').reverse();  
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i].length < 2) {
+				arr[i] = "0".concat(arr[i])  // Put leading 0's in front of single-digit months and dates
+			}
+		}
+		return arr.join('-')
+	}
+
 	
 	// Once workout is fetched, update the bodyweight input.
 	componentDidUpdate(prevProps, prevState) {
