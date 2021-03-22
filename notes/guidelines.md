@@ -3,13 +3,16 @@
 This document is a list of guidelines for development. They are more like suggestions than hard rules. It is assumed the group consensus is that following these guidelines results in a higher quality product (in the average case). No guidelines are permanent and are subject to be removed/replaced/reworded after group discussion.
 
 ## Table of Contents
-+ [Typescript](#typescript)
-	+ [Type-enforcement: Props](#type-enforcement-props)
-	+ [Type-enforcement: State](#type-enforcement-state)
-	+ [Typing functional components](#typing-functional-components)
-+ [Code Formatting](#code-formatting)
-	+ [Component return statements](#component-return-statements)
-+ [Markdown](#markdown)
+- [Development Guidelines](#development-guidelines)
+	- [Table of Contents](#table-of-contents)
+	- [Typescript](#typescript)
+			- [Type-enforcement: Props](#type-enforcement-props)
+			- [Type-enforcement: State](#type-enforcement-state)
+			- [Typing functional components](#typing-functional-components)
+	- [Code Formatting](#code-formatting)
+			- [Component-return-statements](#component-return-statements)
+			- [html-tags](#html-tags)
+	- [Markdown](#markdown)
 
 ## Typescript 
 
@@ -134,7 +137,7 @@ For now, just don't declare the types of functional components. We can always ch
 
 ## Code Formatting
 
-#### Component return statements
+#### Component-return-statements
 
 A component's final return statement (inside of `render()` for class-based components) should be a nice, neat summary of the JSX that's being rendered. This will help us in development, because it serves as a reliable spot for general information about the component (it's also always at the bottom which is nice). 
 
@@ -168,7 +171,9 @@ export default const someFC (props: Props) => {
 }
 
 ```
+#### html-tags
 
+-    `<strong>` tags should be in place of `<b>` tags
 ## Markdown
 
 All hail the Markdown-God, Michael Small ! 
