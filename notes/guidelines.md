@@ -10,8 +10,8 @@ This document is a list of guidelines for development. They are more like sugges
 			- [Type-enforcement: State](#type-enforcement-state)
 			- [Typing functional components](#typing-functional-components)
 	- [Code Formatting](#code-formatting)
-			- [Component-return-statements](#component-return-statements)
-			- [html-tags](#html-tags)
+			- [Component return statements](#component-return-statements)
+			- [HTML tags](#html-tags)
 	- [Markdown](#markdown)
 
 ## Typescript 
@@ -137,7 +137,7 @@ For now, just don't declare the types of functional components. We can always ch
 
 ## Code Formatting
 
-#### Component-return-statements
+#### Component return statements
 
 A component's final return statement (inside of `render()` for class-based components) should be a nice, neat summary of the JSX that's being rendered. This will help us in development, because it serves as a reliable spot for general information about the component (it's also always at the bottom which is nice). 
 
@@ -171,7 +171,7 @@ export default const someFC (props: Props) => {
 }
 
 ```
-#### html-tags
+#### HTML tags
 
 -    `<strong>` tags should be in place of `<b>` tags
 ## Markdown
