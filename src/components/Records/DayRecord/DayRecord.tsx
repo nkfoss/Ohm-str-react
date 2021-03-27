@@ -37,9 +37,9 @@ export default class DayRecord extends Component<Props> {
 				{/* Of course these will be props that `AllDayRecords` will iterate on later, I'm just lazy right now and about to go to work*/}
 				<h2>{this.props.date}</h2>
 				<h2>{this.props.workout}</h2>
-				<b>Lbs: {this.props.lbs}</b> &nbsp;&nbsp;&nbsp;{' '}
-				<b>Sets: {this.props.sets}</b> &nbsp;&nbsp;&nbsp;{' '}
-				<b>Reps per set: {this.props.repsPerSet}</b>
+				<strong>Lbs: {this.props.lbs}</strong> &nbsp;&nbsp;&nbsp;{' '}
+				<strong>Sets: {this.props.sets}</strong> &nbsp;&nbsp;&nbsp;{' '}
+				<strong>Reps per set: {this.props.repsPerSet}</strong>
 				{this.props.notes.length > 0 && (
 					<p>Notes: {this.props.notes}</p>
 				)}
